@@ -258,7 +258,50 @@ h2{font-size:clamp(28px,4vw,44px);letter-spacing:-.03em;line-height:1.2;margin:1
 @keyframes fall{to{transform:translateY(520px) rotate(720deg);opacity:0}}
 .note{font-size:12.5px;color:var(--ink3);margin-top:12px;text-align:center}
 
-/* timeline / closing */
+/* timeline */
+.tl-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+.today{display:inline-flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 16px;box-shadow:var(--shadow);font-size:14px}
+.today b{font-variant-numeric:tabular-nums}
+.today .pulse{width:10px;height:10px;border-radius:50%;background:var(--accent);position:relative}
+.today .pulse::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:2px solid var(--accent);animation:ping 1.8s infinite}
+@keyframes ping{from{transform:scale(.5);opacity:1}to{transform:scale(1.6);opacity:0}}
+.overall{margin-top:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px 24px;box-shadow:var(--shadow)}
+.overall-top{display:flex;justify-content:space-between;font-size:14px;color:var(--ink2);margin-bottom:10px;gap:10px;flex-wrap:wrap}
+.overall-top b{color:var(--ink)}
+.track{height:10px;border-radius:10px;background:var(--bg2);position:relative;overflow:visible}
+.track i{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:10px;background:linear-gradient(90deg,var(--brand2),var(--accent));transition:width 1.6s cubic-bezier(.2,.8,.2,1)}
+.ticks{display:grid;grid-template-columns:repeat(4,1fr);margin-top:8px;font-size:12px;color:var(--ink3)}
+.ticks span{border-left:1px solid var(--line);padding-left:8px}
+.tl{position:relative;margin-top:44px;padding-left:56px}
+.tl-line{position:absolute;left:19px;top:8px;bottom:8px;width:3px;border-radius:3px;background:var(--line)}
+.tl-line i{position:absolute;left:0;top:0;width:100%;height:0;border-radius:3px;background:linear-gradient(180deg,var(--brand2),var(--accent))}
+.wk{position:relative;margin-bottom:22px}
+.wk:last-child{margin-bottom:0}
+.wk-dot{position:absolute;left:-56px;top:22px;width:41px;height:41px;border-radius:50%;background:var(--surface);border:3px solid var(--line);display:grid;place-items:center;font-weight:800;font-size:14px;color:var(--ink3);transition:all .5s;z-index:1}
+.wk.done .wk-dot{background:var(--ok);border-color:var(--ok);color:#fff}
+.wk.now .wk-dot{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 0 0 7px color-mix(in srgb,var(--accent) 22%,transparent);animation:glow 2s ease-in-out infinite}
+@keyframes glow{50%{box-shadow:0 0 0 13px color-mix(in srgb,var(--accent) 6%,transparent)}}
+.wk .card{padding:24px 26px}
+.wk.now .card{border-color:var(--accent);box-shadow:var(--shadow-lg)}
+.wk-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.wk-date{font-size:13px;color:var(--ink3);font-variant-numeric:tabular-nums}
+.st{font-size:11.5px;font-weight:800;padding:3px 10px;border-radius:99px;background:var(--bg2);color:var(--ink3);border:1px solid var(--line)}
+.wk.now .st{background:var(--accent);color:#fff;border-color:var(--accent)}
+.wk.done .st{background:var(--okbg);color:var(--ok);border-color:transparent}
+.wk h3{font-size:20px}
+.wk-goal{color:var(--ink2);font-size:15px;margin-top:4px;word-break:keep-all}
+.tasks{list-style:none;margin-top:16px;display:grid;gap:8px}
+.tasks li{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;padding:10px 12px;background:var(--bg2);border-radius:12px;border:1px solid var(--line);word-break:keep-all}
+.tasks li em{font-style:normal;flex:none;margin-top:1px}
+.tasks .pr{min-width:34px;height:22px;font-size:11px;margin-left:auto;flex:none}
+.wk-days{display:flex;gap:4px;margin-top:14px}
+.wk-days span{flex:1;height:6px;border-radius:4px;background:var(--bg2);border:1px solid var(--line)}
+.wk-days span.past{background:var(--ok);border-color:transparent}
+.wk-days span.today{background:var(--accent);border-color:transparent;animation:blink 1.4s ease-in-out infinite}
+.tl-note{font-size:12.5px;color:var(--ink3);margin-top:18px}
+@media (max-width:600px){.tl{padding-left:44px}.tl-line{left:14px}.wk-dot{left:-44px;width:32px;height:32px;font-size:12px}.wk .card{padding:20px}}
+
+/* closing */
 .closing{margin:120px 0 0;border-radius:32px;padding:clamp(36px,6vw,72px);background:linear-gradient(135deg,#232f7a,#4b55c9 55%,#ff7a59);color:#fff;position:relative;overflow:hidden}
 .closing h2{color:#fff;max-width:720px}
 .closing p{color:rgba(255,255,255,.85);max-width:560px;font-size:17px;word-break:keep-all}
@@ -283,6 +326,7 @@ footer{padding:40px 0 60px;color:var(--ink3);font-size:13px;display:flex;justify
       <a href="#features">핵심 기능</a>
       <a href="#claude">Claude 활용</a>
       <a href="#result">실행결과</a>
+      <a href="#timeline">일정</a>
     </div>
     <button class="theme-btn" id="themeBtn" aria-label="다크 모드 전환">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
@@ -461,6 +505,87 @@ footer{padding:40px 0 60px;color:var(--ink3);font-size:13px;display:flex;justify
     </div>
   </section>
 
+  <!-- 5. 주차별 타임라인 -->
+  <section class="sec" id="timeline">
+    <div class="tl-head reveal">
+      <div>
+        <div class="eyebrow"><span>05</span>4-Week Roadmap</div>
+        <h2>주차별 타임라인</h2>
+        <p class="sub">2026년 11월 18일(수)에 시작해 12월 15일(화)까지 4주 동안, 우선순위 순서대로 기능을 붙여 나갑니다.</p>
+      </div>
+      <div class="today"><span class="pulse"></span>오늘 <b id="todayTxt">2026. 11. 18 (수)</b></div>
+    </div>
+
+    <div class="overall reveal">
+      <div class="overall-top"><span>전체 진행률 <b id="ovPct">0%</b></span><span id="ovDay">D+0 / 28일</span></div>
+      <div class="track"><i id="ovBar"></i></div>
+      <div class="ticks"><span>1주차</span><span>2주차</span><span>3주차</span><span>4주차</span></div>
+    </div>
+
+    <div class="tl" id="tl">
+      <div class="tl-line"><i id="tlFill"></i></div>
+
+      <div class="wk reveal" data-start="2026-11-18">
+        <div class="wk-dot">1</div>
+        <div class="card">
+          <div class="wk-top"><span class="wk-date">11. 18 (수) – 11. 24 (화)</span><span class="st">예정</span></div>
+          <h3>기반 세팅 · 회화와 작문</h3>
+          <p class="wk-goal">언어별 튜터를 만들고 우선순위 1 기능으로 매일 학습을 시작해요.</p>
+          <ul class="tasks">
+            <li><em>🗂️</em>“일본어 튜터”·“영어 튜터” 프로젝트 생성, 튜터 지침 등록<span class="pr p1">P1</span></li>
+            <li><em>💬</em>회화 롤플레이 시작 – 회의·여행·식당 상황별 대화, 오류 즉시 교정<span class="pr p1">P1</span></li>
+            <li><em>✍️</em>작문 교정 루틴 – 내가 쓴 문장을 고치고 이유 설명 받기<span class="pr p1">P1</span></li>
+          </ul>
+          <div class="wk-days"></div>
+        </div>
+      </div>
+
+      <div class="wk reveal" data-start="2026-11-25">
+        <div class="wk-dot">2</div>
+        <div class="card">
+          <div class="wk-top"><span class="wk-date">11. 25 (수) – 12. 1 (화)</span><span class="st">예정</span></div>
+          <h3>학습 누적 · 단어장과 메모리</h3>
+          <p class="wk-goal">학습 중 나온 단어와 내 약점이 자동으로 쌓이게 만들어요.</p>
+          <ul class="tasks">
+            <li><em>📒</em>나만의 단어장 – 학습 중 나온 단어·표현 자동 저장<span class="pr p2">P2</span></li>
+            <li><em>🧩</em>메모리에 내 수준·약점 누적 (예: “조사 실수가 많다”)<span class="pr p2">P2</span></li>
+          </ul>
+          <div class="wk-days"></div>
+        </div>
+      </div>
+
+      <div class="wk reveal" data-start="2026-12-02">
+        <div class="wk-dot">3</div>
+        <div class="card">
+          <div class="wk-top"><span class="wk-date">12. 2 (수) – 12. 8 (화)</span><span class="st">예정</span></div>
+          <h3>복습 앱 · 퀴즈 화면 만들기</h3>
+          <p class="wk-goal">아티팩트로 퀴즈 화면을 만들어 휴대폰에서 매일 복습해요.</p>
+          <ul class="tasks">
+            <li><em>📱</em>아티팩트로 ‘일본어 단어 퀴즈’ 앱 제작, 휴대폰 홈 화면에 추가<span class="pr p2">P2</span></li>
+            <li><em>🧠</em>복습 퀴즈 – 틀린 표현 중심 매일 5문항<span class="pr p2">P2</span></li>
+          </ul>
+          <div class="wk-days"></div>
+        </div>
+      </div>
+
+      <div class="wk reveal" data-start="2026-12-09">
+        <div class="wk-dot">4</div>
+        <div class="card">
+          <div class="wk-top"><span class="wk-date">12. 9 (수) – 12. 15 (화)</span><span class="st">예정</span></div>
+          <h3>음성 연습 · 마무리 점검</h3>
+          <p class="wk-goal">출퇴근길 듣기·말하기를 더하고 4주 학습을 돌아봐요.</p>
+          <ul class="tasks">
+            <li><em>🎧</em>음성 모드로 출퇴근길 듣기·말하기 (영어 회의 롤플레이)<span class="pr p3">P3</span></li>
+            <li><em>✅</em>4주 점검 – 매일 15~20분 학습 루틴 유지 여부 확인</li>
+            <li><em>⌨️</em>가족·동료와 공유가 필요하면 Claude Code로 정식 앱 검토 <span class="opt">선택</span></li>
+          </ul>
+          <div class="wk-days"></div>
+        </div>
+      </div>
+    </div>
+    <p class="tl-note">※ 주차별 세부 일정은 PDF의 기능 우선순위를 바탕으로 구성한 안이에요. 진행 상태는 페이지를 여는 날짜에 맞춰 자동으로 표시됩니다.</p>
+  </section>
+
   <div class="closing reveal">
     <span class="k1">学</span>
     <h2>4주 뒤, 매일 15분이<br>습관이 됩니다.</h2>
@@ -488,7 +613,7 @@ footer{padding:40px 0 60px;color:var(--ink3);font-size:13px;display:flex;justify
 
   /* scroll progress, nav, parallax, active link */
   const nav = $('#nav'), bar = $('#progress'), floaties = $$('.floaty');
-  const secs = ['overview', 'features', 'claude', 'result'].map(id => document.getElementById(id));
+  const secs = ['overview', 'features', 'claude', 'result', 'timeline'].map(id => document.getElementById(id));
   const onScroll = () => {
     const y = scrollY, h = document.documentElement.scrollHeight - innerHeight;
     bar.style.transform = `scaleX(${h > 0 ? y / h : 0})`;
@@ -646,6 +771,49 @@ footer{padding:40px 0 60px;color:var(--ink3);font-size:13px;display:flex;justify
     }
     app.appendChild(box); setTimeout(() => box.remove(), 3000);
   }
+
+  /* timeline: status by today's date */
+  (() => {
+    const DAY = 864e5, START = new Date(2026, 10, 18), TOTAL = 28;
+    const now = new Date(); now.setHours(0, 0, 0, 0);
+    const dIdx = Math.floor((now - START) / DAY); // 0 = 첫날
+    const wd = ['일', '월', '화', '수', '목', '금', '토'];
+    $('#todayTxt').textContent = `${now.getFullYear()}. ${now.getMonth() + 1}. ${now.getDate()} (${wd[now.getDay()]})`;
+    const done = Math.max(0, Math.min(TOTAL, dIdx + 1));
+    const pct = Math.round(done / TOTAL * 100);
+    $('#ovDay').textContent = dIdx < 0 ? `시작까지 D-${-dIdx}` : dIdx >= TOTAL ? '4주 완료 🎉' : `${dIdx + 1}일차 / ${TOTAL}일`;
+    let nowWk = -1;
+    $$('.wk').forEach((wk, w) => {
+      const s = w * 7, st = $('.st', wk);
+      if (dIdx >= s + 7) { wk.classList.add('done'); st.textContent = '완료'; $('.wk-dot', wk).textContent = '✓'; }
+      else if (dIdx >= s) { wk.classList.add('now'); st.textContent = `진행 중 · ${dIdx - s + 1}일차`; nowWk = w; }
+      else { st.textContent = dIdx < s ? `D-${s - dIdx}` : '예정'; }
+      $('.wk-days', wk).innerHTML = Array.from({ length: 7 }, (_, i) => {
+        const k = s + i; return `<span class="${k < dIdx ? 'past' : k === dIdx ? 'today' : ''}" title="${i + 1}일차"></span>`;
+      }).join('');
+    });
+    const tl = $('#tl'), fill = $('#tlFill');
+    // fill line up to the current week's dot (or full when finished)
+    const target = () => {
+      if (dIdx >= TOTAL) return tl.offsetHeight - 16;
+      if (nowWk < 0) return 0;
+      const wk = $$('.wk')[nowWk], dot = $('.wk-dot', wk);
+      return wk.offsetTop + dot.offsetTop + dot.offsetHeight / 2 - 8;
+    };
+    const ob = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return;
+      if (e.target.id === 'tl') { fill.style.transition = reduce ? 'none' : 'height 1.8s cubic-bezier(.2,.8,.2,1) .3s'; fill.style.height = Math.max(0, target()) + 'px'; }
+      else { $('#ovBar').style.width = pct + '%'; countTo($('#ovPct'), pct); }
+      ob.unobserve(e.target);
+    }), { threshold: .2 });
+    ob.observe(tl); ob.observe($('.overall'));
+    addEventListener('resize', () => { if (fill.style.height) fill.style.height = Math.max(0, target()) + 'px'; });
+    function countTo(el, to) {
+      const t0 = performance.now(), dur = reduce ? 0 : 1600;
+      const f = t => { const p = dur ? Math.min(1, (t - t0) / dur) : 1; el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))) + '%'; if (p < 1) requestAnimationFrame(f); };
+      requestAnimationFrame(f);
+    }
+  })();
 
   $$('.seg button').forEach(b => b.addEventListener('click', () => {
     $$('.seg button').forEach(x => x.classList.toggle('on', x === b));
